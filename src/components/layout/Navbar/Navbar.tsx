@@ -34,7 +34,8 @@ export default function Navbar() {
       const lastDay = new Date(now.getFullYear(), now.getMonth() + 1, 0);
       setDateRange({ startDate: firstDay, endDate: lastDay });
     }
-  }, [dateRange, setDateRange]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // Apenas uma vez na montagem
 
   // Navbar só aparece no desktop
   if (!isDesktop) {
