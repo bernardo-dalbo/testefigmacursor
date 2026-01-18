@@ -15,21 +15,24 @@ export default function Navbar() {
     return null;
   }
 
-  // Margem esquerda ajusta conforme estado da sidebar
-  const leftMargin = isExpanded ? 'ml-[300px]' : 'ml-20';
+  // Largura do sidebar para cálculo do left
+  const sidebarWidth = isExpanded ? 300 : 80;
 
   return (
-    <nav className={`
-      ${leftMargin}
-      fixed top-[12px] right-0
-      bg-surface-500
-      border-b border-neutral-300
-      transition-all duration-300 ease-in-out
-      flex items-center justify-between
-      px-[var(--spacing-32)]
-      h-[48px]
-      z-10
-    `}>
+    <nav 
+      className="
+        fixed top-[12px]
+        right-0
+        transition-all duration-300 ease-in-out
+        flex items-center justify-between
+        px-[var(--spacing-32)]
+        h-[48px]
+        z-10
+      "
+      style={{
+        left: `${sidebarWidth}px`
+      }}
+    >
       {/* Left: Search, Filter, Date Picker e Members */}
       <div className="flex gap-[var(--spacing-8)] items-center">
         {/* Grupo: Search, Filter e Date Picker */}

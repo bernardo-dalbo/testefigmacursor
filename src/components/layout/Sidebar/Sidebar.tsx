@@ -10,14 +10,71 @@ interface NavItem {
 const navItems: NavItem[] = [
   { path: '/', label: 'Home' },
   { path: '/cards', label: 'Cartões' },
-  { path: '/transactions', label: 'Transações' },
-  { path: '/profile', label: 'Perfil' },
 ];
+
+/**
+ * Componente de ícone Home (fi-rr-home)
+ * Baseado no Figma MCP: node-id 0:4318
+ */
+function HomeIcon({ className = "size-[16px]" }: { className?: string }) {
+  return (
+    <svg
+      className={`shrink-0 ${className}`}
+      width="16"
+      height="16"
+      viewBox="0 0 16 16"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M8 2L2 7V14H6V11H10V14H14V7L8 2Z"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+/**
+ * Componente de ícone Credit Card (fi-rr-credit-card)
+ * Baseado no Figma MCP: node-id 0:4108
+ */
+function CreditCardIcon({ className = "size-[16px]" }: { className?: string }) {
+  return (
+    <svg
+      className={`shrink-0 ${className}`}
+      width="16"
+      height="16"
+      viewBox="0 0 16 16"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <rect
+        x="2"
+        y="4"
+        width="12"
+        height="8"
+        rx="1"
+        stroke="currentColor"
+        strokeWidth="1.5"
+      />
+      <path
+        d="M2 7H14"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
 
 /**
  * Componente Sidebar - Navegação lateral desktop (≥1280px)
  * Baseado no design do Figma MCP
  * Estados: expanded (300px) e collapsed (80px)
+ * Apenas Home e Cartões conforme Figma MCP
  */
 export default function Sidebar() {
   const { isExpanded, toggle } = useSidebar();
@@ -46,21 +103,22 @@ export default function Sidebar() {
       `}
     >
       {/* Container principal com gap entre logo e menu */}
-      <div className="flex flex-col gap-[var(--spacing-56)] items-start flex-1">
+      <div className={`flex flex-col ${isExpanded ? 'gap-[var(--spacing-56)]' : 'gap-0'} ${isExpanded ? 'items-start' : 'items-center'} flex-1`}>
         {/* Logo */}
         {isExpanded ? (
           <h1 className="text-heading-sm font-bold text-secondary-900">
             <span className="underline">Mycash</span>+
           </h1>
         ) : (
-          // Logo pequeno quando colapsado (SVG placeholder - dimensões conforme Figma)
+          // Logo pequeno quando colapsado (dimensões conforme Figma: h-[43px] w-[45px])
           <div className="h-[43px] w-[45px] flex items-center justify-center">
-            <span className="text-[24px] font-bold text-secondary-900">M</span>
+            {/* Logo SVG colapsado - placeholder com "M" estilizado */}
+            <span className="text-[24px] font-bold text-secondary-900 leading-none">M</span>
           </div>
         )}
 
         {/* Navigation Items */}
-        <nav className="flex flex-col gap-[var(--spacing-8)] w-full">
+        <nav className={`flex flex-col ${isExpanded ? 'gap-[var(--spacing-8)]' : 'gap-0'} w-full ${!isExpanded ? 'items-center' : ''}`}>
           {navItems.map((item) => {
             const isActive = location.pathname === item.path;
             return (
@@ -70,8 +128,8 @@ export default function Sidebar() {
                 className={`
                   group
                   flex items-center
-                  gap-[var(--spacing-8)]
-                  px-[var(--spacing-16)]
+                  ${isExpanded ? 'gap-[var(--spacing-8)]' : ''}
+                  ${isExpanded ? 'px-[var(--spacing-16)]' : 'px-[12px]'}
                   py-[var(--spacing-12)]
                   rounded-[var(--radius-full)]
                   transition-all duration-200
@@ -80,16 +138,17 @@ export default function Sidebar() {
                     ? 'bg-primary-500 text-secondary-900' 
                     : 'text-neutral-1100 hover:bg-neutral-300'
                   }
-                  ${!isExpanded ? 'justify-center px-2' : ''}
+                  ${!isExpanded ? 'justify-center' : ''}
                 `}
                 title={!isExpanded ? item.label : undefined}
               >
-                {/* Ícone */}
-                <span className="text-label-lg flex-shrink-0">
-                  {item.path === '/' ? '🏠' 
-                   : item.path === '/cards' ? '💳'
-                   : item.path === '/transactions' ? '📋'
-                   : '👤'}
+                {/* Ícone do Figma MCP */}
+                <span className="flex-shrink-0 text-neutral-1100" style={isActive ? { color: 'var(--color-secondary-900)' } : {}}>
+                  {item.path === '/' ? (
+                    <HomeIcon />
+                  ) : (
+                    <CreditCardIcon />
+                  )}
                 </span>
                 
                 {isExpanded && (
@@ -121,7 +180,7 @@ export default function Sidebar() {
       </div>
 
       {/* User Profile Section */}
-      <div className="flex flex-col gap-[var(--spacing-12)] items-start">
+      <div className={`flex flex-col gap-[var(--spacing-12)] ${isExpanded ? 'items-start' : 'items-center'}`}>
         <div className="w-6 h-6 rounded-radius-full bg-neutral-300 flex items-center justify-center flex-shrink-0">
           <img 
             src="/3b209d0eef350825920805aa279d69a669b24c57.png" 
@@ -160,8 +219,8 @@ export default function Sidebar() {
         "
         aria-label={isExpanded ? 'Colapsar sidebar' : 'Expandir sidebar'}
       >
-        {/* Ícone de chevron */}
-        <div className="flex-none rotate-180">
+        {/* Ícone de chevron - inverte direção conforme estado */}
+        <div className={`flex-none ${isExpanded ? 'rotate-180' : ''}`}>
           <svg 
             width="16" 
             height="16" 
