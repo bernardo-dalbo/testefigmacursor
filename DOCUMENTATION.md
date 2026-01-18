@@ -5,7 +5,7 @@
 - [x] PROMPT 0: Análise e Planejamento Inicial
 - [x] PROMPT 1: Estrutura Base e Configuração
 - [x] PROMPT 2: Sistema de Layout e Navegação Desktop
-- [ ] PROMPT 3: Sistema de Layout e Navegação Mobile
+- [x] PROMPT 3: Sistema de Layout e Navegação Mobile
 - [ ] PROMPT 4: Context Global e Gerenciamento de Estado
 - [ ] PROMPT 5: Cards de Resumo Financeiro
 - [ ] PROMPT 6: Header do Dashboard com Controles
@@ -473,9 +473,111 @@ Nenhuma conversão necessária — todos os valores usam tokens do design system
 
 ## PROMPT 3: Sistema de Layout e Navegação Mobile
 
-**Status:** ⏳ **PENDENTE** | **Data:** — | **Build:** —
+**Status:** ✅ **CONCLUÍDO** | **Data:** 18/01 | **Build:** ✅ (1 tentativa)
 
-*Aguardando conclusão do PROMPT 2*
+### Implementado
+
+- ✅ Componente HeaderMobile criado e fixo no topo para mobile/tablet (<1280px)
+- ✅ Logo "mycash+" à esquerda em tamanho apropriado para mobile
+- ✅ Avatar do usuário à direita, clicável para abrir menu
+- ✅ Componente MenuDropdown criado com animação slide-in de cima para baixo
+- ✅ Lista de itens de navegação com ícone e texto dentro do dropdown
+- ✅ Item da seção atual destacado com fundo preto e texto branco
+- ✅ Botão vermelho "Sair" na parte inferior do menu
+- ✅ Lógica de fechamento: fecha ao clicar em item de navegação, no X ou no overlay
+- ✅ Breakpoints configurados: HeaderMobile apenas <1280px, Sidebar apenas ≥1280px
+- ✅ Container ajustado para margem superior do HeaderMobile (56px)
+- ✅ Sidebar e HeaderMobile nunca aparecem simultaneamente
+
+### Componentes Criados
+
+**HeaderMobile (`src/components/layout/Header/HeaderMobile.tsx`):**
+- Altura fixa: 56px (h-14)
+- Fixo no topo da viewport
+- Logo "Mycash+" à esquerda (clicable para voltar ao Dashboard)
+- Avatar circular à direita (clicável para abrir menu)
+- Z-index: 30 (acima do conteúdo, abaixo do menu)
+- Renderiza apenas em mobile/tablet (<1280px)
+
+**MenuDropdown (interno ao HeaderMobile):**
+- Animação slide-down de cima para baixo (300ms)
+- Overlay escuro semi-transparente (opacity 50%)
+- Header do menu com título "Menu" e botão X
+- Lista de navegação com 4 itens: Home, Cartões, Transações, Perfil
+- Item ativo com fundo preto (`bg-secondary-900`) e texto branco
+- Botão "Sair" vermelho no rodapé (`bg-red-600`)
+- Fecha ao clicar em item, no X ou no overlay
+- Z-index: 50 (acima do header)
+
+### Tokens Utilizados
+
+**Semânticas:**
+- `bg-surface-500`: Fundo branco do header e menu
+- `text-secondary-900`: Texto preto do logo e labels
+- `border-neutral-300`: Bordas sutis
+
+**Primitivas:**
+- `bg-neutral-300`: Fundo do avatar e botões
+- `bg-red-600`: Fundo do botão "Sair"
+- `text-neutral-500`: Texto cinza médio dos itens inativos
+
+**Conversões:**
+- Nenhuma conversão necessária — todos os valores vieram diretamente das variáveis do Figma
+
+### Animações CSS Criadas
+
+- `@keyframes fadeIn`: Fade-in do overlay (200ms)
+- `@keyframes slideDown`: Slide-down do menu (300ms, translateY de -100% para 0)
+
+### Arquivos Criados/Modificados
+
+**Componentes:**
+- `src/components/layout/Header/HeaderMobile.tsx` (novo)
+
+**Estilos:**
+- `src/styles/globals.css` (adicionadas animações fadeIn e slideDown)
+
+**Aplicação:**
+- `src/App.tsx` (integração do HeaderMobile)
+- `src/components/layout/Container/Container.tsx` (ajustado para margem superior do HeaderMobile)
+
+### Build
+
+✅ **Sucesso** (tentativas: 1)
+- Build completo sem erros
+- Animações CSS funcionando corretamente
+- Componente responsivo validado
+
+**Output:**
+- `dist/index.html`: 0.46 kB
+- `dist/assets/index-BqF89hzH.css`: 13.61 kB (aumento: animações + HeaderMobile)
+- `dist/assets/index-CvJgtZUz.js`: 176.29 kB (aumento: componente HeaderMobile)
+
+### Funcionalidades Implementadas
+
+**HeaderMobile:**
+- ✅ Fixo no topo, ocupa largura total
+- ✅ Logo clicável que navega para Dashboard
+- ✅ Avatar clicável que abre menu dropdown
+- ✅ Renderiza apenas <1280px (mobile/tablet)
+- ✅ Nunca coexiste com Sidebar
+
+**MenuDropdown:**
+- ✅ Animação slide-in suave (300ms)
+- ✅ Overlay escuro semi-transparente
+- ✅ Lista completa de navegação (4 rotas)
+- ✅ Item ativo destacado (fundo preto, texto branco)
+- ✅ Botão "Sair" vermelho no final
+- ✅ Múltiplos triggers de fechamento (item, X, overlay)
+- ✅ Integração com React Router
+
+### Próximos Passos
+
+**PROMPT 4: Context Global e Gerenciamento de Estado**
+- Criar FinanceProvider
+- Implementar arrays de estado
+- Criar funções CRUD
+- Implementar filtros globais
 
 ---
 

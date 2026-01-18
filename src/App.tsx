@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Sidebar from './components/layout/Sidebar/Sidebar';
 import Navbar from './components/layout/Navbar/Navbar';
+import HeaderMobile from './components/layout/Header/HeaderMobile';
 import Container from './components/layout/Container/Container';
 import './styles/globals.css';
 
@@ -20,7 +21,10 @@ function App() {
         {/* Navbar - apenas desktop (≥1280px) */}
         <Navbar />
         
-        {/* Container - ajusta margem conforme sidebar */}
+        {/* HeaderMobile - apenas mobile/tablet (<1280px) */}
+        <HeaderMobile />
+        
+        {/* Container - ajusta margem conforme sidebar/header */}
         <Container>
           <Routes>
             <Route path="/" element={<Dashboard />} />
