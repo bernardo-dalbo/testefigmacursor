@@ -4,7 +4,7 @@
 
 - [x] PROMPT 0: Análise e Planejamento Inicial
 - [x] PROMPT 1: Estrutura Base e Configuração
-- [ ] PROMPT 2: Sistema de Layout e Navegação Desktop
+- [x] PROMPT 2: Sistema de Layout e Navegação Desktop
 - [ ] PROMPT 3: Sistema de Layout e Navegação Mobile
 - [ ] PROMPT 4: Context Global e Gerenciamento de Estado
 - [ ] PROMPT 5: Cards de Resumo Financeiro
@@ -318,9 +318,156 @@ Nenhuma conversão necessária — todos os valores vieram diretamente das vari�
 
 ## PROMPT 2: Sistema de Layout e Navegação Desktop
 
-**Status:** ⏳ **PENDENTE** | **Data:** — | **Build:** —
+**Status:** ✅ **CONCLUÍDO** | **Data:** 18/01 | **Build:** ✅ (2 tentativas)
 
-*Aguardando conclusão do PROMPT 1*
+### Implementado
+
+- ✅ Componente Sidebar criado com estados expandido/colapsado
+- ✅ Botão de toggle implementado com ícone que muda conforme estado
+- ✅ Transições suaves configuradas entre estados (300ms)
+- ✅ Tooltips implementados quando sidebar está colapsada (aparecem ao hover)
+- ✅ Comportamento de item ativo implementado (fundo preto, texto branco, ícone verde-limão)
+- ✅ Componente Navbar criado para desktop (≥1280px)
+- ✅ Container responsivo que ajusta margem conforme sidebar
+- ✅ Hooks customizados: `useSidebar` e `useMediaQuery`
+- ✅ Integração com React Router
+- ✅ Sidebar não renderiza em mobile/tablet (<1280px)
+
+### Componentes Criados
+
+**Sidebar (`src/components/layout/Sidebar/Sidebar.tsx`):**
+- Estados: Expanded (300px) e Collapsed (~80px)
+- Logo "mycash+" no estado expandido, "m+" no colapsado
+- 4 itens de navegação: Home, Cartões, Transações, Perfil
+- Botão toggle circular na borda direita
+- Tooltips ao hover quando colapsada
+- Seção de perfil do usuário (avatar + nome + email)
+- Item ativo com fundo preto, texto branco e ícone verde-limão
+
+**Navbar (`src/components/layout/Navbar/Navbar.tsx`):**
+- Altura fixa: 48px
+- Campo de busca com ícone de lupa
+- Botão de filtros
+- Seletor de período (data)
+- 3 avatares de usuários
+- Botão "+" circular
+- Botão "Nova transação" com fundo preto
+- Ajusta margem esquerda conforme sidebar
+
+**Container (`src/components/layout/Container/Container.tsx`):**
+- Wrapper responsivo que ajusta margem conforme sidebar
+- Margem superior para navbar (desktop)
+- Margem esquerda dinâmica conforme estado da sidebar
+- Transições suaves (300ms)
+
+### Hooks Criados
+
+**useSidebar (`src/hooks/useSidebar.ts`):**
+- `isExpanded: boolean`
+- `toggle: () => void`
+- `expand: () => void`
+- `collapse: () => void`
+
+**useMediaQuery (`src/hooks/useMediaQuery.ts`):**
+- `isMobile: boolean` (<768px)
+- `isTablet: boolean` (768-1279px)
+- `isDesktop: boolean` (≥1280px)
+
+### Tokens Utilizados
+
+**Semânticas:**
+- `--color-primary` / `primary-500`: `#D7FF00` (ícone ativo)
+- `--color-secondary-900` / `secondary-900`: `#060A11` (fundo item ativo, botões)
+- `--color-surface-500` / `surface-500`: `#FFFFFF` (fundo sidebar/navbar)
+- `--color-background-400` / `background-400`: `#F5F6F8` (fundo geral)
+
+**Primitivas:**
+- `neutral-300`: `#e5e7eb` (bordas)
+- `neutral-400`: `#d1d5db` (hover estados)
+- `neutral-500`: `#9ca3af` (texto secundário)
+- `neutral-1100`: `#080b12` (texto principal)
+
+**Espaçamentos:**
+- `spacing-8`: `8px` (espaçamento entre elementos)
+- `spacing-16`: `16px` (padding padrão)
+- `spacing-24`: `24px` (padding lateral)
+- `spacing-32`: `32px` (padding interno)
+
+**Shape:**
+- `radius-sm`: `2px` (cantos arredondados)
+- `radius-md`: `20px` (cards)
+- `radius-full`: `100px` (círculos/avatars)
+
+**Tipografia:**
+- `heading-sm`: `24px/32px` bold (logo)
+- `label-md`: `16px/20px` semibold (navegação)
+- `label-sm`: `14px/16px` semibold (botões)
+- `paragraph-sm`: `14px/20px` regular (texto)
+- `paragraph-xs`: `12px/20px` regular (tooltips)
+
+### Conversões Realizadas
+
+Nenhuma conversão necessária — todos os valores usam tokens do design system.
+
+### Arquivos Criados/Modificados
+
+**Hooks:**
+- `src/hooks/useSidebar.ts`
+- `src/hooks/useMediaQuery.ts`
+
+**Componentes Layout:**
+- `src/components/layout/Sidebar/Sidebar.tsx`
+- `src/components/layout/Navbar/Navbar.tsx`
+- `src/components/layout/Container/Container.tsx`
+
+**Aplicação:**
+- `src/App.tsx` (atualizado para incluir Sidebar, Navbar e Container)
+
+### Build
+
+✅ **Sucesso** (tentativas: 2)
+- Tentativa 1: Erro TypeScript - `useEffect` importado mas não usado no `useSidebar.ts`
+- Correção: Removida importação desnecessária
+- Tentativa 2: ✅ Build completo com sucesso
+
+**Output:**
+- `dist/index.html`: 0.46 kB
+- `dist/assets/index-53h9F3H1.css`: 12.22 kB (aumento: estilos da Sidebar/Navbar)
+- `dist/assets/index-wdXQN2Wp.js`: 171.47 kB (aumento: componentes de layout)
+
+### Funcionalidades Implementadas
+
+**Sidebar:**
+- ✅ Expandida (300px) / Colapsada (~80px)
+- ✅ Transição suave de 300ms
+- ✅ Botão toggle funcional
+- ✅ Tooltips quando colapsada (delay 200ms)
+- ✅ Item ativo destacado (fundo preto, texto branco, ícone verde)
+- ✅ Seção de perfil do usuário
+- ✅ Não renderiza em mobile/tablet (<1280px)
+
+**Navbar:**
+- ✅ Campo de busca funcional
+- ✅ Botão de filtros
+- ✅ Seletor de período
+- ✅ Avatares de usuários
+- ✅ Botão "+" circular
+- ✅ Botão "Nova transação"
+- ✅ Ajusta margem conforme sidebar
+- ✅ Não renderiza em mobile/tablet (<1280px)
+
+**Container:**
+- ✅ Ajusta margem esquerda conforme sidebar
+- ✅ Margem superior para navbar (desktop)
+- ✅ Transições suaves
+- ✅ Responsivo mobile-first
+
+### Próximos Passos
+
+**PROMPT 3: Sistema de Layout e Navegação Mobile**
+- Implementar Header Mobile
+- Menu Dropdown/Drawer
+- Integrar com navegação mobile
 
 ---
 

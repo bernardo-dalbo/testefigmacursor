@@ -1,7 +1,10 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Sidebar from './components/layout/Sidebar/Sidebar';
+import Navbar from './components/layout/Navbar/Navbar';
+import Container from './components/layout/Container/Container';
 import './styles/globals.css';
 
-// Pages (serão criadas nos próximos prompts)
+// Pages
 import Dashboard from './pages/Dashboard';
 import Cards from './pages/Cards';
 import Transactions from './pages/Transactions';
@@ -10,12 +13,23 @@ import Profile from './pages/Profile';
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Dashboard />} />
-        <Route path="/cards" element={<Cards />} />
-        <Route path="/transactions" element={<Transactions />} />
-        <Route path="/profile" element={<Profile />} />
-      </Routes>
+      <div className="min-h-screen bg-background-400">
+        {/* Sidebar - apenas desktop (≥1280px) */}
+        <Sidebar />
+        
+        {/* Navbar - apenas desktop (≥1280px) */}
+        <Navbar />
+        
+        {/* Container - ajusta margem conforme sidebar */}
+        <Container>
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/cards" element={<Cards />} />
+            <Route path="/transactions" element={<Transactions />} />
+            <Route path="/profile" element={<Profile />} />
+          </Routes>
+        </Container>
+      </div>
     </BrowserRouter>
   );
 }
