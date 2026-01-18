@@ -13,8 +13,8 @@ export default function Container({ children }: ContainerProps) {
   const { isDesktop } = useMediaQuery();
   const { isExpanded } = useSidebar();
 
-  // Margem superior: navbar (48px) no desktop, header mobile (56px) no mobile/tablet
-  const topMargin = isDesktop ? 'mt-12' : 'mt-14';
+  // Margem superior: navbar (12px top + 48px height = 60px) no desktop, header mobile (56px) no mobile/tablet
+  const topMargin = isDesktop ? 'mt-[60px]' : 'mt-14';
   
   // Margem esquerda para sidebar (apenas desktop)
   const leftMargin = isDesktop 
