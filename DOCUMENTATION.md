@@ -591,13 +591,69 @@ Nenhuma conversão necessária — todos os valores usam tokens do design system
 
 ## PROMPT 5: Cards de Resumo Financeiro
 
-**Status:** ⏳ **PENDENTE** | **Data:** — | **Build:** —
+**Status:** ✅ **CONCLUÍDO** | **Data:** 18/01 | **Build:** ✅ (2 tentativas)
 
-*Aguardando conclusão do PROMPT 4*
+### Implementado
+
+- ✅ BalanceCard com fundo preto e círculo verde-limão desfocado
+- ✅ IncomeCard com fundo branco e ícone de receita
+- ✅ ExpenseCard com fundo branco e ícone de despesa
+- ✅ Animação de contagem nos valores (800ms, 60 steps)
+- ✅ Utilitário formatCurrency para formatação brasileira
+- ✅ Grid responsivo (1 col mobile, 3 cols desktop)
+- ✅ Cards com mesmo tamanho e sem overflow do frame
+
+### Arquivos Criados/Modificados
+
+**Componentes:**
+- `src/components/dashboard/BalanceSummary/BalanceCard.tsx` (novo)
+- `src/components/dashboard/BalanceSummary/IncomeCard.tsx` (novo)
+- `src/components/dashboard/BalanceSummary/ExpenseCard.tsx` (novo)
+- `src/components/dashboard/BalanceSummary/index.tsx` (novo)
+
+**Utilitários:**
+- `src/utils/formatCurrency.ts` (novo)
+
+**Páginas:**
+- `src/pages/Dashboard.tsx` (integração dos cards)
+
+**Estilos:**
+- `src/styles/variables.css` (adicionado --radius-20)
+
+### Build
+
+✅ **Sucesso** (tentativas: 2)
+- Tentativa 1: Ajustes de layout e tamanhos
+- Tentativa 2: ✅ Build completo com correções de overflow e tamanhos iguais
+
+**Output:**
+- `dist/assets/index-CA6LIXT8.css`: 16.92 kB
+- `dist/assets/index-DLVhRHDq.js`: 192.34 kB
+
+### Funcionalidades Implementadas
+
+**Cards de Resumo:**
+- ✅ BalanceCard: fundo preto, círculo verde-limão desfocado, badge de crescimento
+- ✅ IncomeCard: fundo branco, ícone de seta baixo-esquerda, valor formatado
+- ✅ ExpenseCard: fundo branco, ícone de seta cima-direita, valor formatado
+- ✅ Animação de contagem: 0 até valor final em 800ms
+- ✅ Integração com FinanceContext (valores dinâmicos)
+- ✅ Layout responsivo com cards de mesmo tamanho
+
+**Tokens Utilizados:**
+- Semânticas: `--color-secondary-900`, `--color-primary-500`, `--color-surface-500`
+- Primitivas: `--color-neutral-300`, `--color-neutral-500`, `--color-red-600`, `--spacing-*`, `--radius-*`
 
 ---
 
 ## PROMPT 6: Header do Dashboard com Controles
+
+**Status:** ⏳ **EM ANDAMENTO** | **Data:** — | **Build:** —
+
+*Iniciando implementação...*
+
+---
+
 
 **Status:** ⏳ **PENDENTE** | **Data:** — | **Build:** —
 
