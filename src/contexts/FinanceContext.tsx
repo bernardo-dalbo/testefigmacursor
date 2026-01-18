@@ -19,6 +19,13 @@ interface ExpensesByCategory {
   amount: number;
 }
 
+export interface MonthlyFlowData {
+  month: string; // "JAN", "FEV", etc.
+  monthIndex: number; // 0-11 (janeiro-dezembro)
+  income: number;
+  expenses: number;
+}
+
 interface FinanceContextType {
   // Arrays de entidades
   transactions: Transaction[];
@@ -70,6 +77,7 @@ interface FinanceContextType {
   calculateExpensesByCategory: () => ExpensesByCategory[];
   calculateCategoryPercentage: (category: string) => number;
   calculateSavingsRate: () => number;
+  calculateMonthlyFlow: () => MonthlyFlowData[];
 }
 
 const FinanceContext = createContext<FinanceContextType | undefined>(undefined);
@@ -658,6 +666,43 @@ export function FinanceProvider({ children }: { children: ReactNode }) {
     return ((income - expenses) / income) * 100;
   };
 
+  // Função: calculateMonthlyFlow
+  // Calcula receitas e despesas para cada mês do ano (JAN a DEZ)
+  const calculateMonthlyFlow = (): MonthlyFlowData[] => {
+    const monthNames = ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ'];
+    const now = new Date();
+    const currentYear = now.getFullYear();
+    
+    // Inicializar array com todos os meses do ano
+    const monthlyData: MonthlyFlowData[] = monthNames.map((month, index) => ({
+      month,
+      monthIndex: index,
+      income: 0,
+      expenses: 0,
+    }));
+
+    // Obter todas as transações (sem filtros, para mostrar ano completo)
+    const allTransactions = transactions;
+
+    // Agrupar por mês
+    allTransactions.forEach((transaction) => {
+      const transactionDate = new Date(transaction.date);
+      const transactionYear = transactionDate.getFullYear();
+      const transactionMonth = transactionDate.getMonth(); // 0-11
+
+      // Apenas transações do ano atual
+      if (transactionYear === currentYear) {
+        if (transaction.type === 'income') {
+          monthlyData[transactionMonth].income += transaction.amount;
+        } else if (transaction.type === 'expense') {
+          monthlyData[transactionMonth].expenses += transaction.amount;
+        }
+      }
+    });
+
+    return monthlyData;
+  };
+
   const value: FinanceContextType = {
     // Arrays
     transactions,
@@ -709,6 +754,7 @@ export function FinanceProvider({ children }: { children: ReactNode }) {
     calculateExpensesByCategory,
     calculateCategoryPercentage,
     calculateSavingsRate,
+    calculateMonthlyFlow,
   };
 
   return (
