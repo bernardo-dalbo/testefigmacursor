@@ -1,0 +1,57 @@
+:root {
+  /* === SEMÂNTICAS === */
+  --color-primary: #D7FF00;
+  --color-primary-500: #D7FF00;
+  --color-secondary-50: #E7E8EA;
+  --color-secondary-900: #060A11;
+  --color-surface-500: #FFFFFF;
+  --color-background-400: #F5F6F8;
+  --color-brand-700: #c4e703;
+  
+  /* === PRIMITIVAS - NEUTRAS === */
+  --color-neutral-0: #ffffff;
+  --color-neutral-300: #e5e7eb;
+  --color-neutral-400: #d1d5db;
+  --color-neutral-500: #9ca3af;
+  --color-neutral-1100: #080b12;
+  
+  /* === PRIMITIVAS - CONTEXTUAIS === */
+  --color-blue-600: #2a89ef;
+  --color-green-600: #15be78;
+  --color-red-600: #e61e32;
+  
+  /* === ESPAÇAMENTOS === */
+  --spacing-0: 0;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-56: 56px;
+  --spacing-72: 72px;
+  
+  /* === TIPOGRAFIA === */
+  --font-family: 'Inter', sans-serif;
+  
+  /* Headings */
+  --font-heading-xs: 700 20px/28px 'Inter';
+  --font-heading-sm: 700 24px/32px 'Inter';
+  --font-heading-md: 700 28px/36px 'Inter';
+  
+  /* Labels */
+  --font-label-xs: 600 12px/16px 'Inter';
+  --font-label-sm: 600 14px/16px 'Inter';
+  --font-label-md: 600 16px/20px 'Inter';
+  --font-label-lg: 600 18px/24px 'Inter';
+  
+  /* Paragraphs */
+  --font-paragraph-xs: 400 12px/20px 'Inter';
+  --font-paragraph-sm: 400 14px/20px 'Inter';
+  --font-paragraph-lg: 400 18px/28px 'Inter';
+  
+  /* === BORDAS === */
+  --radius-sm: 2px;
+  --radius-md: 20px;
+  --radius-full: 100px;
+}

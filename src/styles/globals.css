@@ -1,0 +1,42 @@
+@import './variables.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-background-400 text-neutral-1100 font-sans;
+    font-family: var(--font-family);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Reset básico */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Prevenir overflow horizontal */
+  html,
+  body {
+    overflow-x: hidden;
+    width: 100%;
+  }
+}
+
+@layer utilities {
+  /* Utilitários customizados */
+  .container-fluid {
+    @apply w-full;
+  }
+  
+  .container-responsive {
+    @apply w-full px-4 md:px-6 lg:px-8;
+    @apply max-w-[1400px] lg:max-w-[1400px] xl:max-w-[1600px];
+    @apply mx-auto;
+  }
+}
