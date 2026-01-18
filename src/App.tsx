@@ -4,6 +4,7 @@ import Sidebar from './components/layout/Sidebar/Sidebar';
 import Navbar from './components/layout/Navbar/Navbar';
 import HeaderMobile from './components/layout/Header/HeaderMobile';
 import Container from './components/layout/Container/Container';
+import ErrorBoundary from './components/shared/ErrorBoundary';
 import './styles/globals.css';
 
 // Pages
@@ -14,7 +15,8 @@ import Profile from './pages/Profile';
 
 function App() {
   return (
-    <FinanceProvider>
+    <ErrorBoundary>
+      <FinanceProvider>
       <BrowserRouter>
         <div className="min-h-screen bg-background-400">
           {/* Sidebar - apenas desktop (≥1280px) */}
@@ -38,6 +40,7 @@ function App() {
         </div>
       </BrowserRouter>
     </FinanceProvider>
+    </ErrorBoundary>
   );
 }
 

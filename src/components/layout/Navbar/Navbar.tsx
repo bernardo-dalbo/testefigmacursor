@@ -37,14 +37,6 @@ export default function Navbar() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []); // Apenas uma vez na montagem
 
-  // Navbar só aparece no desktop
-  if (!isDesktop) {
-    return null;
-  }
-
-  // Largura do sidebar para cálculo do left
-  const sidebarWidth = isExpanded ? 300 : 80;
-
   // Atualiza searchText no contexto após delay (debounce)
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -53,6 +45,14 @@ export default function Navbar() {
 
     return () => clearTimeout(timer);
   }, [localSearchText, setSearchText]);
+
+  // Navbar só aparece no desktop - renderização condicional no JSX em vez de early return
+  if (!isDesktop) {
+    return null;
+  }
+
+  // Largura do sidebar para cálculo do left
+  const sidebarWidth = isExpanded ? 300 : 80;
 
   return (
     <nav 
