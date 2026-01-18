@@ -53,5 +53,6 @@
   /* === BORDAS === */
   --radius-sm: 2px;
   --radius-md: 20px;
+  --radius-20: 20px;
   --radius-full: 100px;
 }

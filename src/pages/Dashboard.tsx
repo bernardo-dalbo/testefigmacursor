@@ -1,8 +1,12 @@
+import BalanceSummary from '../components/dashboard/BalanceSummary';
+
 function Dashboard() {
   return (
-    <div className="container-responsive">
-      <h1 className="text-heading-md">Dashboard</h1>
-      <p className="text-paragraph-sm">Página do Dashboard será implementada nos próximos prompts.</p>
+    <div className="container-responsive w-full max-w-full">
+      {/* Cards de Resumo Financeiro */}
+      <div className="mb-[var(--spacing-24)] w-full">
+        <BalanceSummary />
+      </div>
     </div>
   );
 }
